@@ -1,21 +1,14 @@
 import React from "react";
-
-import { gql, useQuery } from "@apollo/client";
+import ShowCurrencies from "./components/ShowCurrencies";
+import ShowQueries from "./components/ShowQueries";
 
 function App() {
-  const result = useQuery(gql`
-    query GetRates {
-      rates(currency: "USD") {
-        currency
-      }
-    }
-  `);
-
-  if (result.loading || !result.data) {
-    return <div>Loading</div>;
-  }
-
-  return <div>{result.data.rates.length}</div>;
+  return (
+    <div>
+      <ShowQueries />
+      <ShowCurrencies />
+    </div>
+  );
 }
 
 export default App;
