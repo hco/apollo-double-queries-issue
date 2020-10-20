@@ -1,0 +1,6 @@
+schema: "schema.graphql"
+extensions:
+  endpoints:
+    dev: https://fakeql.com/graphql/a4be664b7c9ef465851a26484b329e73
+
+documents: "src/**/*.graphql"

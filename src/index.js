@@ -6,7 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
 const client2 = new ApolloClient({
-  uri: "https://48p1r2roz4.sse.codesandbox.io",
+  uri: "https://fakeql.com/graphql/a4be664b7c9ef465851a26484b329e73",
   cache: new InMemoryCache(),
   connectToDevTools: true,
 });

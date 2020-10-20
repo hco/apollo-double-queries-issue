@@ -1,12 +1,18 @@
-import React from "react";
-import ShowCurrencies from "./components/ShowCurrencies";
+import React, { useState } from "react";
+import SensorList from "./components/SensorList";
 import ShowQueries from "./components/ShowQueries";
 
 function App() {
+  const [onlyFavorites, setOnlyFavorites] = useState(false);
   return (
     <div>
       <ShowQueries />
-      <ShowCurrencies />
+      <hr />
+      <button onClick={() => setOnlyFavorites(!onlyFavorites)}>
+        Toggle favorites only view
+      </button>
+      <hr />
+      <SensorList onlyFavorites={onlyFavorites} />
     </div>
   );
 }
