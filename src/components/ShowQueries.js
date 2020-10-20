@@ -13,9 +13,12 @@ const ShowQueries = () => {
   return (
     <div>
       {queries.map(([index, query]) => (
-        <pre key={index} style={{ border: "1px solid grey" }}>
-          {query.document.loc.source.body}
-        </pre>
+        <div>
+          <pre key={index} style={{ border: "1px solid grey" }}>
+            {query.document.loc.source.body}
+          </pre>
+          <pre>{JSON.stringify(query.variables)}</pre>
+        </div>
       ))}
     </div>
   );
