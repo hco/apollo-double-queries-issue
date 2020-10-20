@@ -4,6 +4,7 @@ import ShowQueries from "./components/ShowQueries";
 
 function App() {
   const [onlyFavorites, setOnlyFavorites] = useState(false);
+  const [showSensorList, setShowSensorList] = useState(false);
   return (
     <div>
       <ShowQueries />
@@ -11,8 +12,12 @@ function App() {
       <button onClick={() => setOnlyFavorites(!onlyFavorites)}>
         Toggle favorites only view
       </button>
+      <button onClick={() => setShowSensorList(!showSensorList)}>
+        Show Sensor List
+      </button>
+
       <hr />
-      <SensorList onlyFavorites={onlyFavorites} />
+      {showSensorList && <SensorList onlyFavorites={onlyFavorites} />}
     </div>
   );
 }
