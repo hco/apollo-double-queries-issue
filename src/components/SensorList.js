@@ -1,6 +1,6 @@
 import React from "react";
 
-import { gql, useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 
 const SensorQuery = gql`
   query SensorList($onlyFavorites: Boolean) {
@@ -12,22 +12,42 @@ const SensorQuery = gql`
   }
 `;
 
+const setFavoriteMutation = gql`
+  mutation SetFavorite($id: ID!, $favorite: Boolean!) {
+    updateSensor(id: $id, input: { favorite: $favorite }) {
+      id
+      favorite
+    }
+  }
+`;
+
 function SensorList({ onlyFavorites }) {
   const result = useQuery(SensorQuery, {
     variables: { onlyFavorites: onlyFavorites ? true : undefined },
   });
 
-  console.log(result.data);
+  const [setFavorite] = useMutation(setFavoriteMutation, {
+    refetchQueries: ["SensorList"],
+  });
 
-  if (result.loading || !result.data) {
+  if (result.loading && !result.data) {
     return <div>Loading</div>;
   }
 
   return (
     <>
       {result.data.sensors.map((sensor) => (
-        <div key={sensor.id}>
-          {sensor.id}: {sensor.favorite ? "Favorite" : "Not a favorite"}
+        <div key={sensor.serial}>
+          <button
+            onClick={() => {
+              setFavorite({
+                variables: { id: sensor.id, favorite: !sensor.favorite },
+              });
+            }}
+          >
+            Toggle
+          </button>
+          {sensor.id}:{sensor.favorite ? "Favorite" : "Not a favorite"}{" "}
         </div>
       ))}
     </>

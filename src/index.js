@@ -11,6 +11,8 @@ const client2 = new ApolloClient({
   connectToDevTools: true,
 });
 
+window["client2"] = client2;
+
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client2}>
